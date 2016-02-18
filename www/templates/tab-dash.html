@@ -1,0 +1,33 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding">
+    <div class="card">
+    <div class="item item-divider">Uhrzeit</div>
+    <p>
+      {{time | date:'d.m.Y'}}<br/>
+      {{time | date:'HH:mm:ss'}}
+    </p>
+    </div>
+    <div class="card">
+    <div class="item item-divider">
+      Zeit bis zur standesamtlichen Hochzeit:
+    </div>
+    <div>
+      <p>Tage :{{diffToZwischen.t}}</p>
+      <p>Stunden :{{diffToZwischen.h}}</p>
+      <p>Minuten :{{diffToZwischen.m}}</p>
+      <p>Sekunden :{{diffToZwischen.s}}</p>
+    </div>
+    </div>
+    <div class="card">
+    <div class="item item-divider">
+      Zeit bis zur kirchlichen Hochzeit:
+    </div>
+    <div>
+      <p>Tage :{{diffToFinal.t}}</p>
+      <p>Stunden :{{diffToFinal.h}}</p>
+      <p>Minuten :{{diffToFinal.m}}</p>
+      <p>Sekunden :{{diffToFinal.s}}</p>
+    </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view view-title="ToDo">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="todo in todos" type="item-text-wrap" ng-model="todo">
+        <h2>{{todo.title}}</h2>
+        <p>{{todo.body}}</p>
+        <i ng-click='toggleDone()' class="icon {{(todo.done ? ion-android-checkbox-outline-blank : ion-android-checkbox-outline )}} icon-accessory"></i>
+        <ion-option-button class="button-assertive" ng-click="remove(todo)">
+          Löschen
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+    <hr/>
+    <h4>Neue Aufgabe</h4>
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Titel" ng-model="todoForm.title">
+      </label>
+      <label class="item item-input">
+        <textarea placeholder="Beschreibung" ng-model="todoForm.body"></textarea>
+      </label>
+      <button class="button button-full button-balanced" ng-click="add(todoForm)">
+          Neue Aufgabe speichern
+      </button>
+  </div>
+  </ion-content>
+</ion-view>
