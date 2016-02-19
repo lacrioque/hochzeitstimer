@@ -25,8 +25,8 @@ angular.module('hochzeitstimer.services', [])
 		localStorage.setItem(key, value);
 		return true;
 	},
-		getData = function(){
-			var value = localStorage.getItem(key, value);
+		getData = function(key){
+			var value = localStorage.getItem(key);
 			if(value.match(/^({object})/)){
 				return _parseData(value);
 			} else if(value.match(/^({bool})/)){
@@ -111,21 +111,25 @@ angular.module('hochzeitstimer.services', [])
 			_addToList(newTodo.id);
 		},
 		toggleDone = function(todoID){
-			var todoITem = $MyStorage.getData(todoID);
+			var todoItem = $MyStorage.getData(todoID);
 			todoItem.done = !todoItem.done;
 			$MyStorage.setData(todoItem, todoItem.id);
 		},
 		getAll = function(){
+			allTodo = [];
 			var list = $MyStorage.getData('list');
 			if(list === null) { list = []; }
-			angular.forEach(list.all, function(value,key){
-				allTodo.push($MyStorage.getItem(value));
+			angular.forEach(list, function(value,key){
+				var todo = $MyStorage.getData(value);
+				if(todo !== null && todo !== {}){
+					allTodo.push(todo);
+				}
 			});
 			return allTodo;
 		},
 		_addToList = function(todoID){
 			allTodo.push(todoID);
-			$MyStorage.setData({all: allTodo}, 'list');
+			$MyStorage.setData(allTodo, 'list');
 		},
 		allTodo = [];
 		

@@ -6,10 +6,11 @@ angular.module('hochzeitstimer.controllers', [])
         zwischenTermin = new Date(2016,6,9,16,0,0).getTime(),
         getClockObj = function(time){
           var d = Math.floor(time/(1000*60*60*24)),
-              h = Math.floor((time/(1000*60*60))%24)+1,
-              m = Math.floor((time/(1000*60))%60)+1,
-              s = Math.floor((time/1000)%60)+1;
-          return {days: d, hours: h, minutes: m, seconds: s};
+              h = Math.floor((time/(1000*60*60))%24),
+              m = Math.floor((time/(1000*60))%60),
+              s = Math.floor((time/1000)%60),
+              returnObj =  {t: d, h: h, m: m, s: s};
+              return returnObj;
         };
         
         $interval(function(){
@@ -26,12 +27,20 @@ angular.module('hochzeitstimer.controllers', [])
 })
 
 .controller('todoCtrl', function($scope, todoService) {
-
+  var getTodos = function(){
+    var todos = todoService.getAll();
+    angular.forEach(todos, function(item,i){
+      if(item === {}){
+        todos.splice(i,1);
+      }
+    });
+    $scope.todos = todos;
+  };
   $scope.newTodo = {
     title : "",
     body : ""
   }
-  $scope.todos = todoService.getAll();
+  
   $scope.remove = function(item) {
     todoService.remove(item);
   };
@@ -40,6 +49,7 @@ angular.module('hochzeitstimer.controllers', [])
     todoService.toggleDone(this.todo.id);
   };
   $scope.add = function(todoForm){
+    
     var newTodo = {
       title : todoForm.title,
       body : todoForm.body,
@@ -47,6 +57,9 @@ angular.module('hochzeitstimer.controllers', [])
       done : false
     }
     todoService.add(newTodo);
+    getTodos();
+    $scope.todoForm.title = "";
+    $scope.todoForm.body = "";
   };
 })
 

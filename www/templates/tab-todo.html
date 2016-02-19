@@ -4,7 +4,10 @@
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="todo in todos" type="item-text-wrap" ng-model="todo">
         <h2>{{todo.title}}</h2>
         <p>{{todo.body}}</p>
-        <i ng-click='toggleDone()' class="icon {{(todo.done ? ion-android-checkbox-outline-blank : ion-android-checkbox-outline )}} icon-accessory"></i>
+        <p><button class="button button-full {{{ true: 'button-balanced', false: 'button-energized'}[todo.done]}}" ng-click='toggleDone()'> 
+          <i class="icon {{{true: 'ion-android-checkbox-outline' , false: 'ion-android-checkbox-outline-blank' }[todo.done]}} icon-accessory"></i>
+        {{{ true: 'Erledigt', false: 'Offen'}[todo.done]}}
+        </button></p>
         <ion-option-button class="button-assertive" ng-click="remove(todo)">
           Löschen
         </ion-option-button>

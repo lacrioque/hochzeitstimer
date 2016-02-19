@@ -1,4 +1,4 @@
-angular.module('hochzeitstimer', ['ionic', 'hochzeitstimer.controllers', 'hochzeitstimer.services'])
+angular.module('hochzeitstimer', ['ionic', 'ionic-material', 'hochzeitstimer.controllers', 'hochzeitstimer.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

@@ -1,1 +1,9 @@
 /* Empty. Add your own CSS if you like */
+.text-center{
+	text-align: center;
+	margin: auto;
+}
+.strong{
+	font-size: 110%;
+	font-weight: bold;
+}

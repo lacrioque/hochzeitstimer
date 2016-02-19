@@ -1,32 +1,32 @@
-<ion-view view-title="Dashboard">
-  <ion-content class="padding">
+<ion-view view-title="Zeitleiste">
+  <ion-content class="divadding">
     <div class="card">
-    <div class="item item-divider">Uhrzeit</div>
-    <p>
-      {{time | date:'d.m.Y'}}<br/>
-      {{time | date:'HH:mm:ss'}}
-    </p>
+    <div class="item item-divider strong">Uhrzeit</div>
+    <div class="item item-text-wrap text-center">
+      <div class="text-center">{{time | date:'d.m.yyyy'}}</div>
+      <div class="text-center">{{time | date:'HH:mm:ss'}}</div>
+    </div>
     </div>
     <div class="card">
-    <div class="item item-divider">
+    <div class="item item-divider strong">
       Zeit bis zur standesamtlichen Hochzeit:
     </div>
-    <div>
-      <p>Tage :{{diffToZwischen.t}}</p>
-      <p>Stunden :{{diffToZwischen.h}}</p>
-      <p>Minuten :{{diffToZwischen.m}}</p>
-      <p>Sekunden :{{diffToZwischen.s}}</p>
+    <div class="item item-text-wrap">
+      <div class="row"><div class="col col-50">Tage :</div><div class="col col-50 strong">{{diffToZwischen.t}}</div></div>
+      <div class="row"><div class="col col-50">Stunden :</div><div class="col col-50 strong">{{diffToZwischen.h}}</div></div>
+      <div class="row"><div class="col col-50">Minuten :</div><div class="col col-50 strong">{{diffToZwischen.m}}</div></div>
+      <div class="row"><div class="col col-50">Sekunden :</div><div class="col col-50 strong">{{diffToZwischen.s}}</div></div>
     </div>
     </div>
     <div class="card">
-    <div class="item item-divider">
+    <div class="item item-divider strong">
       Zeit bis zur kirchlichen Hochzeit:
     </div>
-    <div>
-      <p>Tage :{{diffToFinal.t}}</p>
-      <p>Stunden :{{diffToFinal.h}}</p>
-      <p>Minuten :{{diffToFinal.m}}</p>
-      <p>Sekunden :{{diffToFinal.s}}</p>
+    <div class="item item-text-wrap">
+      <div class="row"><div class="col col-50">Tage :</div><div class="col col-50 strong">{{diffToFinal.t}}</div></div>
+      <div class="row"><div class="col col-50">Stunden :</div><div class="col col-50 strong">{{diffToFinal.h}}</div></div>
+      <div class="row"><div class="col col-50">Minuten :</div><div class="col col-50 strong">{{diffToFinal.m}}</div></div>
+      <div class="row"><div class="col col-50">Sekunden :</div><div class="col col-50 strong">{{diffToFinal.s}}</div></div>
     </div>
     </div>
   </ion-content>
