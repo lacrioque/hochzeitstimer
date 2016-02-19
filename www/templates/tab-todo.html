@@ -1,9 +1,21 @@
 <ion-view view-title="ToDo">
   <ion-content>
+    <h4>Neue Aufgabe</h4>
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Titel" ng-model="todoForm.title">
+      </label>
+      <label class="item item-input">
+        <textarea placeholder="Beschreibung" ng-model="todoForm.body"></textarea>
+      </label>
+      <button class="button button-full button-balanced" ng-click="add()">
+          Neue Aufgabe speichern
+      </button>
+    <hr/>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="todo in todos" type="item-text-wrap" ng-model="todo">
+      <ion-item class="item-remove-animate" ng-repeat="todo in todos"  ng-model="todo">
         <h2>{{todo.title}}</h2>
-        <p>{{todo.body}}</p>
+        <div style='white-space: pre-wrap;'>{{todo.body}}</div>
         <p><button class="button button-full {{{ true: 'button-balanced', false: 'button-energized'}[todo.done]}}" ng-click='toggleDone()'> 
           <i class="icon {{{true: 'ion-android-checkbox-outline' , false: 'ion-android-checkbox-outline-blank' }[todo.done]}} icon-accessory"></i>
         {{{ true: 'Erledigt', false: 'Offen'}[todo.done]}}
@@ -13,18 +25,6 @@
         </ion-option-button>
       </ion-item>
     </ion-list>
-    <hr/>
-    <h4>Neue Aufgabe</h4>
-    <div class="list">
-      <label class="item item-input">
-        <input type="text" placeholder="Titel" ng-model="todoForm.title">
-      </label>
-      <label class="item item-input">
-        <textarea placeholder="Beschreibung" ng-model="todoForm.body"></textarea>
-      </label>
-      <button class="button button-full button-balanced" ng-click="add(todoForm)">
-          Neue Aufgabe speichern
-      </button>
   </div>
   </ion-content>
 </ion-view>

@@ -1,3 +1,4 @@
+/* global angular, StatusBar, cordova */
 angular.module('hochzeitstimer', ['ionic', 'ionic-material', 'hochzeitstimer.controllers', 'hochzeitstimer.services'])
 
 .run(function($ionicPlatform) {
@@ -12,7 +13,11 @@ angular.module('hochzeitstimer', ['ionic', 'ionic-material', 'hochzeitstimer.con
     }
   });
 })
+.config(['$ionicConfigProvider', function($ionicConfigProvider) {
 
+    $ionicConfigProvider.tabs.position('bottom');
+
+}])
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider

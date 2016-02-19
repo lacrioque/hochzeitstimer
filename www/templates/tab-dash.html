@@ -3,31 +3,47 @@
     <div class="card">
     <div class="item item-divider strong">Uhrzeit</div>
     <div class="item item-text-wrap text-center">
-      <div class="text-center">{{time | date:'d.m.yyyy'}}</div>
-      <div class="text-center">{{time | date:'HH:mm:ss'}}</div>
+      <div class="text-center text-spread">{{time | date:'dd.MM.yyyy'}}</div>
+      <div class="text-center text-spread">{{time | date:'HH:mm:ss'}}</div>
     </div>
     </div>
     <div class="card">
-    <div class="item item-divider strong">
-      Zeit bis zur standesamtlichen Hochzeit:
-    </div>
-    <div class="item item-text-wrap">
-      <div class="row"><div class="col col-50">Tage :</div><div class="col col-50 strong">{{diffToZwischen.t}}</div></div>
-      <div class="row"><div class="col col-50">Stunden :</div><div class="col col-50 strong">{{diffToZwischen.h}}</div></div>
-      <div class="row"><div class="col col-50">Minuten :</div><div class="col col-50 strong">{{diffToZwischen.m}}</div></div>
-      <div class="row"><div class="col col-50">Sekunden :</div><div class="col col-50 strong">{{diffToZwischen.s}}</div></div>
-    </div>
+        <div class="item item-divider strong">
+        Zeit bis zur standesamtlichen Hochzeit:
+        </div>
+        <div class="item item-text-wrap">
+            <div class="row">
+                <div class="col col-25">Tage</div>
+                <div class="col col-25">Std.</div>
+                <div class="col col-25">Min.</div>
+                <div class="col col-25">Sek.</div>
+            </div>
+            <div class="row">
+                <div class="col col-25 strong">{{diffToZwischen.t}}</div>
+                <div class="col col-25 strong">{{diffToZwischen.h}}</div>
+                <div class="col col-25 strong">{{diffToZwischen.m}}</div>
+                <div class="col col-25 strong">{{diffToZwischen.s}}</div>
+            </div>
+        </div>
     </div>
     <div class="card">
-    <div class="item item-divider strong">
-      Zeit bis zur kirchlichen Hochzeit:
-    </div>
-    <div class="item item-text-wrap">
-      <div class="row"><div class="col col-50">Tage :</div><div class="col col-50 strong">{{diffToFinal.t}}</div></div>
-      <div class="row"><div class="col col-50">Stunden :</div><div class="col col-50 strong">{{diffToFinal.h}}</div></div>
-      <div class="row"><div class="col col-50">Minuten :</div><div class="col col-50 strong">{{diffToFinal.m}}</div></div>
-      <div class="row"><div class="col col-50">Sekunden :</div><div class="col col-50 strong">{{diffToFinal.s}}</div></div>
-    </div>
+        <div class="item item-divider strong">
+        Zeit bis zur kirchlichen Hochzeit:
+        </div>
+        <div class="item item-text-wrap">
+            <div class="row">
+                <div class="col col-25">Tage</div>
+                <div class="col col-25">Std.</div>
+                <div class="col col-25">Min.</div>
+                <div class="col col-25">Sek.</div>
+            </div>
+            <div class="row">
+                <div class="col col-25 strong">{{diffToFinal.t}}</div>
+                <div class="col col-25 strong">{{diffToFinal.h}}</div>
+                <div class="col col-25 strong">{{diffToFinal.m}}</div>
+                <div class="col col-25 strong">{{diffToFinal.s}}</div>
+            </div>
+        </div>
     </div>
   </ion-content>
 </ion-view>

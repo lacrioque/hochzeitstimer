@@ -1,3 +1,4 @@
+/* global angular, StatusBar, cordova */
 angular.module('hochzeitstimer.controllers', [])
 
 .controller('DashCtrl', function($scope, $interval) {
@@ -29,30 +30,26 @@ angular.module('hochzeitstimer.controllers', [])
 .controller('todoCtrl', function($scope, todoService) {
   var getTodos = function(){
     var todos = todoService.getAll();
-    angular.forEach(todos, function(item,i){
-      if(item === {}){
-        todos.splice(i,1);
-      }
-    });
     $scope.todos = todos;
-  };
-  $scope.newTodo = {
+ };
+  $scope.todoForm = {
     title : "",
     body : ""
   }
   
   $scope.remove = function(item) {
     todoService.remove(item);
+    getTodos();
   };
   $scope.toggleDone = function(){
     this.todo.done = !this.todo.done;
     todoService.toggleDone(this.todo.id);
   };
-  $scope.add = function(todoForm){
+  $scope.add = function(){
     
     var newTodo = {
-      title : todoForm.title,
-      body : todoForm.body,
+      title :  $scope.todoForm.title,
+      body :  $scope.todoForm.body,
       time : new Date().getTime(),
       done : false
     }
@@ -61,6 +58,7 @@ angular.module('hochzeitstimer.controllers', [])
     $scope.todoForm.title = "";
     $scope.todoForm.body = "";
   };
+  getTodos();
 })
 
 

@@ -1,18 +1,8 @@
+/* global angular, StatusBar, cordova */
 angular.module('hochzeitstimer.services', [])
-.factory('$CustomLog', function(){
-	var debug = true,
-		getLog = function(){
-			if(debug){
-				return console.log;
-			} else {
-				return function(){};
-			}
-		};
-		return getLog;
-})
-.factory('$MyStorage', function($CustomLog){	
+.factory('$MyStorage', function(){	
 	var setData = function(data, key){
-		if(data == undefined || key === undefined){return false;}
+		if(data === undefined || key === undefined){return false;}
 		var value = null;
 		switch (typeof(data)){
 			case "object" : if(data !== null){ value=_stringifyData(data); } break;
@@ -27,10 +17,13 @@ angular.module('hochzeitstimer.services', [])
 	},
 		getData = function(key){
 			var value = localStorage.getItem(key);
+            if(value === null) { return null; }
 			if(value.match(/^({object})/)){
-				return _parseData(value);
+				var retval = _parseData(value);
+                return retval;
 			} else if(value.match(/^({bool})/)){
-				return (value.replace(/^({bool})/,"") === "1"); 
+                var retbool = (value.replace(/^({bool})/,"") === "1"); 
+				return retbool;
 			} else {
 				return value;
 			}
@@ -45,7 +38,7 @@ angular.module('hochzeitstimer.services', [])
 			try{
 				retData = JSON.parse(useablePart);
 			} catch(e){
-				$CustomLog(e);
+				//console.log(e);
 			}
 			return retData;
 		};
@@ -64,7 +57,7 @@ angular.module('hochzeitstimer.services', [])
     s4() + '-' + s4() + s4() + s4();
   };
 })
-.factory('comingHomeServ', function($http,$MyStorage,$CustomLog) {
+.factory('comingHomeServ', function($http,$MyStorage) {
   	/**
 	   * TODO!
 	   * $http Server und anbindung gestalten um die App auch remote fähig zu machen
@@ -77,7 +70,7 @@ angular.module('hochzeitstimer.services', [])
 			work: false
 		},
 		_saveObj = function(){
-			$MyStorage.setItem(comingHomeObj, 'comingHomeObj');
+			$MyStorage.setItem(_comingHomeObj, 'comingHomeObj');
 		},
 		_getObj = function(){
 			_comingHomeObj = $MyStorage.getItem('comingHomeObj');
@@ -104,6 +97,7 @@ angular.module('hochzeitstimer.services', [])
 .factory('todoService', function($MyStorage, myUUID){
 	var remove = function(todoItem){
 			$MyStorage.setData(null, todoItem.id);
+            _rmFromList(todoItem.id);
 		},
 		add = function(newTodo){
 			newTodo.id = myUUID();
@@ -118,6 +112,8 @@ angular.module('hochzeitstimer.services', [])
 		getAll = function(){
 			allTodo = [];
 			var list = $MyStorage.getData('list');
+            console.log("getList:")
+            console.log(list);
 			if(list === null) { list = []; }
 			angular.forEach(list, function(value,key){
 				var todo = $MyStorage.getData(value);
@@ -125,14 +121,19 @@ angular.module('hochzeitstimer.services', [])
 					allTodo.push(todo);
 				}
 			});
+            console.log(allTodo);
 			return allTodo;
 		},
 		_addToList = function(todoID){
 			allTodo.push(todoID);
 			$MyStorage.setData(allTodo, 'list');
 		},
+        _rmFromList = function(todoID){
+            allTodo.splice(allTodo.indexOf(todoID),1);
+			$MyStorage.setData(allTodo, 'list');
+        },
 		allTodo = [];
-		
+        
 		return{
 			remove : remove,
 			add : add,
