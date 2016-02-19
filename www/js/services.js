@@ -116,6 +116,9 @@ angular.module('hochzeitstimer.services', [])
             console.log(list);
 			if(list === null) { list = []; }
 			angular.forEach(list, function(value,key){
+                if(value.id !== undefined){
+                    value = value.id;
+                }
 				var todo = $MyStorage.getData(value);
 				if(todo !== null && todo !== {}){
 					allTodo.push(todo);
